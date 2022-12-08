@@ -6,6 +6,21 @@ public class Main {
 
     }
 
+    public static int findShort(String s) {
+        String[] words = s.split("\s");
+        int minWordLength = words[0].length();
+
+        for (String word : words) {
+            if (word.length() < minWordLength) {
+                minWordLength = word.length();
+            }
+        }
+        return minWordLength;
+    }
+    public static String binaryAddition(int a, int b) {
+        return Integer.toBinaryString(a + b);
+    }
+
     public static String bmi(double weight, double height) {
         double bmi = weight / (height * height);
         String result = "";
