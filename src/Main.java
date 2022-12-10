@@ -1,9 +1,214 @@
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
 
+    }
+
+    public static String camelCase(String input) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isUpperCase(input.charAt(i))) {
+                stringBuilder.append(" ").append(input.charAt(i));
+            } else {
+                stringBuilder.append(input.charAt(i));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    public static int liters(double time) {
+        return (int) (time * 0.5);
+    }
+
+    public static String noSpace(final String x) {
+        return x.replaceAll("\s", "");
+    }
+
+    public static String accum(String s) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            stringBuilder.append(s.toUpperCase().charAt(i));
+            int innerCounter = 1;
+
+            for (innerCounter = 1; innerCounter < i + 1; innerCounter++) {
+                stringBuilder.append(s.toLowerCase().charAt(i));
+            }
+            stringBuilder.append("-");
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        return stringBuilder.toString();
+    }
+
+    public static String greet(String name) {
+        return "Hello, " + name + " how are you doing today?";
+    }
+
+    public static boolean isIsogram(String str) {
+        HashSet hashSet = new HashSet<>();
+        for (int i = 0; i < str.length(); i++) {
+            hashSet.add(str.toLowerCase().charAt(i));
+        }
+        return hashSet.size() == str.length();
+    }
+
+    public static int getCount(String str) {
+        int vowelsCounter = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'
+                    || str.charAt(i) == 'o' || str.charAt(i) == 'u') {
+                vowelsCounter++;
+            }
+        }
+        return vowelsCounter;
+    }
+
+    //
+    public static String even_or_odd(int number) {
+        return (number % 2 == 0) ? "Even" : "Odd";
+    }
+
+    public static int persistence(long n) {
+        String number = String.valueOf(Long.valueOf(n));
+        int counter = 0;
+        while (number.length() > 1) {
+            int[] digits = new int[number.length()];
+            for (int i = 0; i < digits.length; i++) {
+                digits[i] = Integer.parseInt(String.valueOf(number.charAt(i)));
+            }
+            int multiplication = 1;
+            for (int i = 0; i < digits.length; i++) {
+                multiplication *= digits[i];
+            }
+            number = String.valueOf(multiplication);
+            counter++;
+        }
+        return counter;
+    }
+
+    public static String reverseWords(final String original) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder resultStringBuilder = new StringBuilder();
+
+        for (int i = 0; i < original.length(); i++) {
+            if (original.charAt(i) != ' ') {
+                stringBuilder.append(original.charAt(i));
+            } else {
+                resultStringBuilder.append(stringBuilder.reverse());
+                resultStringBuilder.append(" ");
+                stringBuilder.setLength(0);
+            }
+        }
+        resultStringBuilder.append(stringBuilder.reverse());
+
+        return resultStringBuilder.toString();
+    }
+
+    public static int[] invert(int[] array) {
+        if (array.length == 0) {
+            return new int[0];
+        } else {
+            int[] reversedArray = new int[array.length];
+            for (int i = 0; i < array.length; i++) {
+                reversedArray[i] = array[i] * (-1);
+            }
+            return reversedArray;
+        }
+    }
+
+    public static String updateLight(String current) {
+        return switch (current) {
+            case "green" -> "yellow";
+            case "yellow" -> "red";
+            case "red" -> "green";
+            default -> throw new IllegalArgumentException();
+        };
+    }
+
+    public static int simpleMultiplication(int n) {
+        return (n % 2 == 0) ? n * 8 : n * 9;
+    }
+
+    public class MixedSum {
+        /*
+         * Assume input will be only of Integer o String type
+         */
+        public int sum(List<?> mixed) {
+            int sum = 0;
+            for (Object o : mixed) {
+                sum += Integer.parseInt(o.toString());
+            }
+            return sum;
+        }
+    }
+
+    public static String areYouPlayingBanjo(String name) {
+        if (name.toLowerCase().startsWith("r")) {
+            return name + " plays banjo";
+        } else {
+            return name + " does not play banjo";
+        }
+    }
+
+    public static int grow(int[] x) {
+        int mult = 1;
+        for (int i : x) {
+            mult *= i;
+        }
+        return mult;
+    }
+
+    public static String removeExclamationMarks(String s) {
+        return s.replaceAll("!", "");
+    }
+
+
+    public static boolean isTriangle(int a, int b, int c) {
+        return ((c < a + b) && (b < a + c) && (a < b + c)) == true ? true : false;
+    }
+
+    public static boolean isSquare(int n) {
+        return (Math.sqrt(n) % 1 == 0) ? true : false;
+    }
+
+    static String greet(String name, String owner) {
+        return (name.equals(owner)) ? "Hello boss" : "Hello guest";
+    }
+
+    public static int paperWork(int n, int m) {
+        return (n < 0 || m < 0) ? 0 : m * n;
+    }
+
+    public static int findSmallestInt(int[] args) {
+        int minValue = args[0];
+
+        for (int arg : args) {
+            if (minValue > arg) {
+                minValue = arg;
+            }
+        }
+        return minValue;
+    }
+
+    public static String dnaToRna(String dna) {
+        return dna.replaceAll("T", "-").
+                replaceAll("U", "T").
+                replaceAll("-", "U");
+    }
+
+    public static boolean isLove(final int flower1, final int flower2) {
+        if (flower1 % 2 == 0 && flower2 % 2 == 1) {
+            return true;
+        } else if (flower1 % 2 == 1 && flower2 % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static int findShort(String s) {
@@ -17,6 +222,7 @@ public class Main {
         }
         return minWordLength;
     }
+
     public static String binaryAddition(int a, int b) {
         return Integer.toBinaryString(a + b);
     }
@@ -66,6 +272,16 @@ public class Main {
 
         // resultSum
         return totalSum - minValue - maxValue;
+    }
+
+    public static int sum2(int[] arr) {
+        int sum = 0;
+        for (int i : arr) {
+            if (i >= 0) {
+                sum += i;
+            }
+        }
+        return sum;
     }
 
     public static int makeNegative(final int x) {
