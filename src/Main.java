@@ -10,6 +10,10 @@ public class Main {
 
     }
 
+    public static boolean setAlarm(boolean employed, boolean vacation) {
+        return !(!employed || vacation);
+    }
+
     public static int min(int[] list) {
         int minValue = list[0];
         for (int i : list) {
