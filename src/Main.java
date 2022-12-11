@@ -1,3 +1,5 @@
+import com.sun.jdi.Value;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -6,6 +8,43 @@ import java.util.TreeSet;
 public class Main {
     public static void main(String[] args) {
 
+    }
+
+    public static int min(int[] list) {
+        int minValue = list[0];
+        for (int i : list) {
+            if (i < minValue) {
+                minValue = i;
+            }
+        }
+        return minValue;
+    }
+
+    public static int max(int[] list) {
+        int maxValue = list[0];
+        for (int i : list) {
+            if (i > maxValue) {
+                maxValue = i;
+            }
+        }
+        return maxValue;
+    }
+
+    public static String countingSheep(int num) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= num; i++) {
+            stringBuilder.append(i).append(" sheep...");
+        }
+        return stringBuilder.toString();
+    }
+
+
+    public static int summation(int n) {
+        int sum = 0;
+        for (int i = 0; i <= n; i++) {
+            sum += i;
+        }
+        return sum;
     }
 
     public static String camelCase(String input) {
@@ -67,7 +106,6 @@ public class Main {
         return vowelsCounter;
     }
 
-    //
     public static String even_or_odd(int number) {
         return (number % 2 == 0) ? "Even" : "Odd";
     }
