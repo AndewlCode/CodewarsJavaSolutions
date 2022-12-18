@@ -1,13 +1,29 @@
-import com.sun.jdi.Value;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println(find(new int[]{1, 2, 3, 4, 5, 6, 7, 8}));
+    }
 
+    public static Integer find(final int[] array) {
+        int startValue = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == startValue) {
+                startValue++;
+            } else return array[i];
+        }
+        return null;
+    }
+
+    public static int strCount(String str, char letter) {
+        int counter = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == letter) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     public static boolean setAlarm(boolean employed, boolean vacation) {
