@@ -1,9 +1,14 @@
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(find(new int[]{1, 2, 3, 4, 5, 6, 7, 8}));
+
+    }
+    public static String[] stringToArray(String s) {
+        String [] strings = s.split(" ");
+        return strings;
     }
 
     public static Integer find(final int[] array) {
