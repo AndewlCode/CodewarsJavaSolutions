@@ -6,8 +6,95 @@ public class Main {
     public static void main(String[] args) {
 
     }
+
+    public static int expressionsMatter(int a, int b, int c) {
+        int[] values = new int[4];
+        values[0] = a + b + c;
+        values[1] = a * (b + c);
+        values[2] = (a + b) * c;
+        values[3] = a * b * c;
+        Arrays.sort(values);
+        return values[values.length - 1];
+    }
+
+    public static String howMuchILoveYou(int nb_petals) {
+        String[] strings = {
+                "I love you",
+                "a little",
+                "a lot",
+                "passionately",
+                "madly",
+                "not at all"
+        };
+
+        if (nb_petals <= 6) {
+            return strings[nb_petals - 1];
+        } else {
+            int val = nb_petals % 6 - 1;
+            return strings[val];
+        }
+    }
+
+    public static int ConvertBinaryArrayToInt(List<Integer> binary) {
+        double sum = 0;
+        for (int i = 0; i < binary.size(); i++) {
+            if (binary.get(i) == 1) {
+                sum += Math.pow(2, (binary.size() - i - 1));
+            }
+        }
+        return (int) sum;
+    }
+
+    public static int findEvenIndex(int[] arr) {
+        for (int index = 0; index < arr.length; index++) {
+            int leftSum = 0;
+            for (int j = 0; j < index; j++) {
+                leftSum += arr[j];
+            }
+            int rightSum = 0;
+            for (int i = index + 1; i < arr.length; i++) {
+                rightSum += arr[i];
+            }
+            if (rightSum == leftSum) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public static String[] wave(String str) {
+        String upperCaseString = str.toUpperCase();
+        String[] resultArray = new String[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            char upperCaseChar = upperCaseString.charAt(i);
+            StringBuilder stringBuilder = new StringBuilder(str);
+            stringBuilder.replace(i, i + 1, String.valueOf(upperCaseChar));
+            resultArray[i] = stringBuilder.toString();
+            stringBuilder.setLength(0);
+        }
+        return resultArray;
+    }
+
+    public static int move(int position, int roll) {
+        return position + roll * 2;
+    }
+
+    public static int[] minMax(int[] arr) {
+        int minValue = Arrays.stream(arr).min().getAsInt();
+        int maxValue = Arrays.stream(arr).max().getAsInt();
+        return new int[]{minValue, maxValue};
+    }
+
+    public static int stringToNumber(String str) {
+        return Integer.parseInt(str);
+    }
+
+    public static boolean solution(String str, String ending) {
+        return str.endsWith(ending);
+    }
+
     public static String[] stringToArray(String s) {
-        String [] strings = s.split(" ");
+        String[] strings = s.split(" ");
         return strings;
     }
 
