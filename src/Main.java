@@ -7,6 +7,15 @@ public class Main {
 
     }
 
+    public static int opposite(int number) {
+        return number * -1;
+    }
+
+    public static boolean checkForFactor(int base, int factor) {
+        int factor2 = base / factor;
+        return factor2 * factor == base;
+    }
+
     public static int expressionsMatter(int a, int b, int c) {
         int[] values = new int[4];
         values[0] = a + b + c;
