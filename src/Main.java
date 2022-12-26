@@ -7,6 +7,45 @@ public class Main {
 
     }
 
+    public static int[] reverse(int n) {
+        int[] array = new int[n];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = n;
+            n--;
+        }
+        return array;
+    }
+
+    public static int[] map(int[] arr) {
+//        for (int i = 0; i < arr.length; i++) {
+//            arr[i] *= 2;
+//        }
+        return Arrays.stream(arr).map(value -> value *= 2).toArray();
+    }
+
+    public static String fakeBin(String numberString) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < numberString.length(); i++) {
+            int digit = Integer.parseInt(String.valueOf(numberString.charAt(i)));
+            if (digit < 5) {
+                stringBuilder.append(0);
+            } else {
+                stringBuilder.append(1);
+            }
+        }
+        return stringBuilder.toString();
+        //return numberString.replaceAll("[0-4]", "0").replaceAll("[5-9]", "1");
+    }
+
+    public static String getMiddle(String word) {
+
+        if (word.length() % 2 == 1) {
+            return String.valueOf(word.charAt(word.length() / 2));
+        } else {
+            return String.valueOf(word.charAt(word.length() / 2 - 1)) + String.valueOf(word.charAt(word.length() / 2));
+        }
+    }
+
     public static int opposite(int number) {
         return number * -1;
     }
@@ -27,14 +66,7 @@ public class Main {
     }
 
     public static String howMuchILoveYou(int nb_petals) {
-        String[] strings = {
-                "I love you",
-                "a little",
-                "a lot",
-                "passionately",
-                "madly",
-                "not at all"
-        };
+        String[] strings = {"I love you", "a little", "a lot", "passionately", "madly", "not at all"};
 
         if (nb_petals <= 6) {
             return strings[nb_petals - 1];
@@ -219,8 +251,7 @@ public class Main {
     public static int getCount(String str) {
         int vowelsCounter = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'
-                    || str.charAt(i) == 'o' || str.charAt(i) == 'u') {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {
                 vowelsCounter++;
             }
         }
@@ -355,9 +386,7 @@ public class Main {
     }
 
     public static String dnaToRna(String dna) {
-        return dna.replaceAll("T", "-").
-                replaceAll("U", "T").
-                replaceAll("-", "U");
+        return dna.replaceAll("T", "-").replaceAll("U", "T").replaceAll("-", "U");
     }
 
     public static boolean isLove(final int flower1, final int flower2) {
@@ -455,11 +484,7 @@ public class Main {
             chars.add(c);
         }
 
-        String result = chars.toString().
-                replace(",", "").
-                replace("[", "").
-                replace("]", "").
-                replaceAll("\\s", "");
+        String result = chars.toString().replace(",", "").replace("[", "").replace("]", "").replaceAll("\\s", "");
 
         return result;
     }
@@ -524,11 +549,11 @@ public class Main {
     }
 
     public static String disemvowel(String str) {
-    /*    return str.replace("a","").replace("A","")
-                .replace("e", "").replace("E", "")
-                .replace("i", "").replace("I", "")
-                .replace("o","").replace("O","")
-                .replace("u","").replace("U","");*/
+//        return str.replace("a","").replace("A","")
+//                .replace("e", "").replace("E", "")
+//                .replace("i", "").replace("I", "")
+//                .replace("o","").replace("O","")
+//                .replace("u","").replace("U","");
         return str.replaceAll("[aAeEiIoOuU]", "");
     }
 
@@ -650,14 +675,14 @@ public class Main {
 
     public static String findNeedle(Object[] haystack) {
         return "found the needle at position " + Arrays.asList(haystack).indexOf("needle");
-        /*String resultString = "";
-        for (int i = 0; i < haystack.length; i++) {
-            if (haystack[i] != null) {
-                if (haystack[i].equals("needle")) {
-                    resultString = "found the needle at position " + i;
-                }
-            }
-        }*/
+//        String resultString = "";
+//        for (int i = 0; i < haystack.length; i++) {
+//            if (haystack[i] != null) {
+//                if (haystack[i].equals("needle")) {
+//                    resultString = "found the needle at position " + i;
+//                }
+//            }
+//        }
     }
 
     public static String doubleChar(String s) {
