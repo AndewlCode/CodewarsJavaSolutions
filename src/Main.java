@@ -1,11 +1,80 @@
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
 
     }
+
+    public static int[] countPositivesSumNegatives(int[] input) {
+        // Check Array is not null
+        if (input == null || input.length == 0) {
+            return new int[]{};
+        }
+
+        // Check result
+        int positiveCounter = 0;
+        int negativeSum = 0;
+
+        for (int i : input) {
+            if (i > 0) {
+                positiveCounter++;
+            }
+            if (i < 0) {
+                negativeSum += i;
+            }
+        }
+        return new int[]{positiveCounter, negativeSum};
+    }
+
+
+    public static String remove(String str) {
+        StringBuilder stringBuilder = new StringBuilder(str);
+        stringBuilder.deleteCharAt(0).deleteCharAt(stringBuilder.length() - 1);
+        return stringBuilder.toString();
+    }
+
+    public static int nbDig(int n, int d) {
+        int[] array = new int[n + 1];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i * i;
+        }
+
+        String str = Arrays.toString(array);
+        String regex = String.valueOf(d);
+
+        Matcher matcher = Pattern.compile(regex)
+                .matcher(str);
+
+        int counter = 0;
+        while (matcher.find()) {
+            counter++;
+        }
+
+        return counter;
+    }
+
+    public static int sortDesc(final int num) {
+        String number = String.valueOf(num);
+        Integer[] array = new Integer[number.length()];
+
+        for (int i = 0; i < number.length(); i++) {
+            array[i] = Integer.parseInt(String.valueOf(number.charAt(i)));
+        }
+
+        Arrays.sort(array, Collections.reverseOrder());
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Integer integer : array) {
+            stringBuilder.append(integer);
+        }
+
+        return Integer.parseInt(stringBuilder.toString());
+    }
+
 
     public static int[] reverse(int n) {
         int[] array = new int[n];
