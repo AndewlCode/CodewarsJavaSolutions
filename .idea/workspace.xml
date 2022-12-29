@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d5588b8-f1a0-4575-bf8b-3814afdecb1f" name="Changes" comment="Codewars Java Solutions">
+    <list default="true" id="6d5588b8-f1a0-4575-bf8b-3814afdecb1f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -56,6 +56,8 @@
       <workItem from="1672053821923" duration="3419000" />
       <workItem from="1672058415733" duration="3455000" />
       <workItem from="1672170324601" duration="2645000" />
+      <workItem from="1672236684292" duration="2018000" />
+      <workItem from="1672344937537" duration="485000" />
     </task>
     <task id="LOCAL-00001" summary="Codewars Java Solutions">
       <created>1670175685377</created>
@@ -134,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672056354628</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Codewars Java Solutions">
+      <created>1672224528942</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672224528943</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

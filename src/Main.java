@@ -7,6 +7,22 @@ public class Main {
 
     }
 
+    public static int rentalCarCost(int d) {
+        int dayRentCost = 40;
+        int totalCost = 0;
+        if (d < 3) {
+            totalCost = dayRentCost * d;
+        }
+        if (d >= 3 && d < 7) {
+            totalCost = dayRentCost * d - 20;
+        }
+        if (d >= 7) {
+            totalCost = dayRentCost * d - 50;
+        }
+
+        return totalCost;
+    }
+
     public static int[] countPositivesSumNegatives(int[] input) {
         // Check Array is not null
         if (input == null || input.length == 0) {
@@ -30,10 +46,12 @@ public class Main {
 
 
     public static String remove(String str) {
-        StringBuilder stringBuilder = new StringBuilder(str);
-        stringBuilder.deleteCharAt(0).deleteCharAt(stringBuilder.length() - 1);
-        return stringBuilder.toString();
+        //StringBuilder stringBuilder = new StringBuilder(str);
+        //stringBuilder.deleteCharAt(0).deleteCharAt(stringBuilder.length() - 1);
+        //return stringBuilder.toString();
+        return str.substring(1, str.length() - 1);
     }
+
 
     public static int nbDig(int n, int d) {
         int[] array = new int[n + 1];
