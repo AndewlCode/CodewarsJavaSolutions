@@ -5,7 +5,21 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(duplicateCount("indivisibility"));
+        System.out.println(replace("123a"));
+    }
+
+    public static String replace(final String s) {
+        return s.replaceAll("[aeiouAEIOU]", "!");
+    }
+
+    public static List<String> number(List<String> lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(lines.get(i));
+            stringBuilder.insert(0, (i + 1) + ": ");
+            lines.set(i, stringBuilder.toString());
+        }
+        return lines;
     }
 
     public static int duplicateCount(String text) {
