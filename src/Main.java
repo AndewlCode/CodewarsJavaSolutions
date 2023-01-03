@@ -1,10 +1,78 @@
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println(duplicateCount("indivisibility"));
+    }
 
+    public static int duplicateCount(String text) {
+        String normalisedText = text.toLowerCase();
+        char[] chars = normalisedText.toCharArray();
+
+        List<Character> characterList = new ArrayList<>();
+        HashSet<Character> uniqueCharacterHashSet = new HashSet<>();
+
+        for (char aChar : chars) {
+            characterList.add(aChar);
+            uniqueCharacterHashSet.add(aChar);
+        }
+
+        for (Character character : uniqueCharacterHashSet) {
+            characterList.remove(character);
+        }
+
+        HashSet<Character> resultCharacterHashSet = new HashSet<>();
+        for (Character character : characterList) {
+            resultCharacterHashSet.add(character);
+        }
+
+        return resultCharacterHashSet.size();
+    }
+
+
+    public static double find_average(int[] array) {
+        return Arrays.stream(array).mapToDouble(d -> d).average().orElse(0);
+    }
+
+
+    public static int solution(int number) {
+        if (number > 0) {
+            int sum = 0;
+            for (int i = 0; i < number; i++) {
+                if (i % 3 == 0 || i % 5 == 0) {
+                    sum += i;
+                }
+            }
+            return sum;
+        } else {
+            return -1;
+        }
+    }
+
+    public static long findNextSquare(long sq) {
+        long inputValueSqrt = (long) Math.sqrt(sq);
+        if (Math.pow(inputValueSqrt, 2) == sq) {
+            return (long) Math.pow(Math.sqrt(sq) + 1, 2);
+        } else {
+            return -1;
+        }
+    }
+
+
+    public static List<Object> filterList(final List<Object> list) {
+        /*ArrayList<Object> arrayList = new ArrayList<Object>();
+        for (Object o : list) {
+            if (o instanceof Integer) {
+                arrayList.add(o);
+            }
+        }
+        return arrayList;*/
+        return list.stream()
+                .filter(o -> o instanceof Integer)
+                .collect(Collectors.toList());
     }
 
     public static int rentalCarCost(int d) {
