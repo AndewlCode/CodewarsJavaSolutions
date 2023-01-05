@@ -5,8 +5,64 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(replace("123a"));
+
     }
+
+    public static String abbrevName(String name) {
+        String[] nameSurname = name.toUpperCase().split(" ");
+        return nameSurname[0].charAt(0) + "." + nameSurname[1].charAt(0);
+    }
+
+    public static int findIt(int[] a) {
+        // Add all unique numbers to HashSet
+        HashSet<Integer> uniqeValues = new HashSet<>();
+        for (int i = 0; i < a.length; i++) {
+            uniqeValues.add(a[i]);
+        }
+
+        // Count all unique numbers in array int[a]
+        HashMap<Integer, Integer> hashMap = new HashMap();
+        int counter = 0;
+        for (Integer uniqeValue : uniqeValues) {
+            for (int i = 0; i < a.length; i++) {
+                if (uniqeValue == Integer.valueOf(a[i])) {
+                    counter++;
+                }
+            }
+            hashMap.put(uniqeValue, counter);
+            counter = 0;
+        }
+
+        // Which value is odd
+        for (Integer uniqueValue : uniqeValues) {
+            if (hashMap.get(uniqueValue) % 2 == 1) {
+                return uniqueValue;
+            }
+        }
+
+        return -1;
+    }
+
+    public static String spinWords(String sentence) {
+        String[] words = sentence.split(" ");
+        StringBuilder wordBuilder = new StringBuilder();
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (String word : words) {
+            if (word.length() < 5) {
+                resultBuilder.append(wordBuilder.append(word).append(" "));
+                wordBuilder.setLength(0);
+            }
+            if (word.length() >= 5) {
+                resultBuilder.append(wordBuilder.append(word).reverse().append(" "));
+                wordBuilder.setLength(0);
+            }
+        }
+        resultBuilder.delete(resultBuilder.length() - 1, resultBuilder.length());
+
+        return resultBuilder.toString();
+    }
+
 
     public static String replace(final String s) {
         return s.replaceAll("[aeiouAEIOU]", "!");
