@@ -5,7 +5,24 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println(digital_root(493193));
+    }
 
+    public static int digital_root(int n) {
+        int value = n;
+        if (n >= 10) {
+            int result = 0;
+            String number = Integer.toString(n);
+            int[] digits = new int[number.length()];
+            for (int i = 0; i < number.length(); i++) {
+                digits[i] = Integer.parseInt(String.valueOf(number.charAt(i)));
+            }
+            for (int digit : digits) {
+                result += digit;
+            }
+            return result = digital_root(result);
+        }
+        else return value;
     }
 
     public static String abbrevName(String name) {
