@@ -1,3 +1,5 @@
+import org.w3c.dom.css.Counter;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -5,7 +7,26 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(digital_root(493193));
+
+    }
+
+    public static int[][] multiplicationTable(int n) {
+        int[][] result = new int[n][n];
+        // Add first row and cell values
+        for (int i = 0; i < n; i++) {
+            result[0][i] = i + 1;
+            for (int j = 0; j < n; j++) {
+                result[i][0] = i + 1;
+            }
+        }
+
+        // Multiply cells and rows
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                result[i][j] = result[0][i] * result[0][j];
+            }
+        }
+        return result;
     }
 
     public static int digital_root(int n) {
@@ -21,8 +42,7 @@ public class Main {
                 result += digit;
             }
             return result = digital_root(result);
-        }
-        else return value;
+        } else return value;
     }
 
     public static String abbrevName(String name) {
@@ -157,9 +177,7 @@ public class Main {
             }
         }
         return arrayList;*/
-        return list.stream()
-                .filter(o -> o instanceof Integer)
-                .collect(Collectors.toList());
+        return list.stream().filter(o -> o instanceof Integer).collect(Collectors.toList());
     }
 
     public static int rentalCarCost(int d) {
@@ -218,8 +236,7 @@ public class Main {
         String str = Arrays.toString(array);
         String regex = String.valueOf(d);
 
-        Matcher matcher = Pattern.compile(regex)
-                .matcher(str);
+        Matcher matcher = Pattern.compile(regex).matcher(str);
 
         int counter = 0;
         while (matcher.find()) {
