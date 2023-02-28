@@ -1,5 +1,10 @@
 import org.w3c.dom.css.Counter;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,9 +15,206 @@ public class Main {
 
     }
 
+    public static boolean isPalindrome(char[] str1) {
+        for (int i = 0; i < str1.length; i++) {
+            if (str1[i] != str1[str1.length - i -1]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isAnagram(char[] str1, char[] str2) {
+        if (str1.length == str2.length) {
+            for (int j = 0; j < str1.length; j++) {
+                for (int i = 0; i < str2.length; i++) {
+                    if (str2[i] == str1[j]) {
+                        str2[i] = ' ';
+                        str1[j] = ' ';
+                    }
+                }
+            }
+            for (char c : str2) {
+                if (c != ' ') {
+                    return false;
+                }
+            }
+            for (char c : str1) {
+                if (c != ' ') {
+                    return false;
+                }
+            }
+        } else return false;
+        return true;
+    }
+
+    public static char[] concat(char[] str1, char[] str2) {
+        char[] result = new char[str1.length + str2.length];
+
+        for (int i = 0; i < str1.length; i++) {
+            result[i] = str1[i];
+        }
+
+        for (int i = 0; i < str2.length; i++) {
+            result[i + str1.length] = str2[i];
+        }
+
+        return result;
+    }
+
+    public static void toUpperCase(char[] str) {
+        for (int i = 0; i < str.length; i++) {
+            str[i] = Character.toUpperCase(str[i]);
+        }
+    }
+
+    public static void toLowerCase(char[] str) {
+        for (int i = 0; i < str.length; i++) {
+            str[i] = Character.toLowerCase(str[i]);
+        }
+    }
+
+    public static int strlen(char[] word) {
+        return word.length;
+    }
+
+
+    public static boolean isLetterOrDigit(char c) {
+        return (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57);
+    }
+
+
+    public static boolean isLetter(char c) {
+        return (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+    }
+
+
+    public static boolean isUpper(char c) {
+        return Character.isUpperCase(c);
+    }
+
+
+    public static boolean isWhitespace(char c) {
+        return c == ' ' || c == '\n' || c == '\t';
+    }
+
+    public static int iterPrime(int n) {
+        int countPrimeNums = n + 1;
+        int[] primeNum = new int[countPrimeNums];
+        int indexSecond = 2;
+        primeNum[indexSecond] = 3;
+        int corrInd = indexSecond;
+        int corrNum = primeNum[corrInd] + 2;
+        boolean isPrime;
+        while (corrInd < primeNum.length - 1) {
+            isPrime = true;
+            for (int i = 2; i < corrInd; i++) {
+                if (corrNum % primeNum[i] == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                corrInd++;
+                primeNum[corrInd] = corrNum;
+                corrNum = primeNum[corrInd] + 2;
+            } else corrNum += 2;
+        }
+        return primeNum[primeNum.length - 1];
+    }
+
+    public static void recursiveReversePrint(char[] c, int k) {
+        if (k == 0) {
+            return;
+        } else {
+            System.out.print(c[k - 1]);
+            recursiveReversePrint(c, k - 1);
+        }
+    }
+
+    public static boolean iterIsPrime(int n) {
+        if (n <= 0) {
+            return false;
+        } else {
+            int isPrimeCounter = 0;
+            for (int i = 1; i <= n; i++) {
+                if (n % i == 0) {
+                    isPrimeCounter++;
+                }
+            }
+            return isPrimeCounter == 2;
+        }
+    }
+
+    public static int recursivePow(int a, int b) {
+        if (b == 0) {
+            return 1;
+        } else {
+            return a * recursivePow(a, (b - 1));
+        }
+    }
+
+    public static String removeParentheses(String str) {
+        String regex = "\\(.+\\)";
+        return str.replaceAll(regex, "");
+    }
+
+    public static String whoLikesIt(String... names) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (names.length == 0) {
+            stringBuilder.append("no one likes this");
+        } else if (names.length == 1) {
+            stringBuilder.append(names[0]);
+            stringBuilder.append(" likes this");
+        } else if (names.length == 2) {
+            stringBuilder.append(names[0]);
+            stringBuilder.append(" and ");
+            stringBuilder.append(names[1]);
+            stringBuilder.append(" like this");
+        } else if (names.length == 3) {
+            stringBuilder.append(names[0]);
+            stringBuilder.append(", ");
+            stringBuilder.append(names[1]);
+            stringBuilder.append(" and ");
+            stringBuilder.append(names[2]);
+            stringBuilder.append(" like this");
+        } else {
+            stringBuilder.append(names[0]);
+            stringBuilder.append(", ");
+            stringBuilder.append(names[1]);
+            stringBuilder.append(" and ");
+            stringBuilder.append(names.length - 2);
+            stringBuilder.append(" others like this");
+        }
+        return stringBuilder.toString();
+    }
+
+    public static boolean isValid(char[] walk) {
+        int northCounter = 0;
+        int southCounter = 0;
+        int eastCounter = 0;
+        int westCounter = 0;
+        for (char direction : walk) {
+            if (direction == 'n') {
+                northCounter++;
+            }
+            if (direction == 's') {
+                southCounter++;
+            }
+            if (direction == 'e') {
+                eastCounter++;
+            }
+            if (direction == 'w') {
+                westCounter++;
+            }
+        }
+
+        return ((northCounter - southCounter == 0) && (eastCounter - westCounter == 0) && walk.length == 10);
+    }
+
     public static int[][] multiplicationTable(int n) {
         int[][] result = new int[n][n];
-        // Add first row and cell values
+        // Add first row and columns values
         for (int i = 0; i < n; i++) {
             result[0][i] = i + 1;
             for (int j = 0; j < n; j++) {
@@ -20,7 +222,7 @@ public class Main {
             }
         }
 
-        // Multiply cells and rows
+        // Multiply rows and columns
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 result[i][j] = result[0][i] * result[0][j];
@@ -594,6 +796,7 @@ public class Main {
             }
             return sum;
         }
+
     }
 
     public static String areYouPlayingBanjo(String name) {
