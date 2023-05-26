@@ -14,10 +14,562 @@ public class Main {
     public static void main(String[] args) {
 
     }
+    public static int stringToInt(char[] str) {
+        int i = 0, number = 0;
+        boolean isNegative = false;
+        int len = str.length;
+        if (str[0] == '-') {
+            isNegative = true;
+            i = 1;
+        }
+        while (i < len) {
+            number *= 10;
+            number += (str[i++] - '0');
+        }
+        if (isNegative)
+            number = -number;
+        return number;
+    }
+
+
+    public static boolean contains(char[] str, char[] substr) {
+        if (str.length == 0 || substr.length == 0 || substr.length > str.length) {
+            return false;
+        } else {
+            int substringIndex = 0;
+            int counter = 0;
+            for (int i = 0; i < str.length; i++) {
+                for (int j = substringIndex; j < substr.length; j++) {
+                    if (str[i] == substr[substringIndex]) {
+                        counter++;
+                        i++;
+                        substringIndex++;
+                        if (counter == substr.length) {
+                            return true;
+                        }
+                    } else {
+                        substringIndex = 0;
+                        counter = 0;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    static int stray(int[] numbers) {
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+
+        for (int num : numbers) {
+            if (hashMap.containsKey(num)) {
+                int currentValue = (int) hashMap.get(num);
+                Integer newValue = currentValue + 1;
+                hashMap.put(num, newValue);
+            } else {
+                hashMap.put(num, (Integer) 1);
+            }
+        }
+
+        for (int num : numbers) {
+            int value = (int) hashMap.get(num);
+            if (value == 1) {
+                return num;
+            }
+        }
+        return 0;
+    }
+
+    public static String correct(String string) {
+        return string.replaceAll("5", "S").replaceAll("0", "O").replaceAll("1", "I");
+    }
+
+    public static int findAverage(int[] nums) {
+        int counter = 0;
+        for (int num : nums) {
+            counter += num;
+        }
+        return counter / nums.length;
+    }
+
+    public static int countBits(int n) {
+        String str = Integer.toBinaryString(n);
+        int bitsOne = 0;
+        for (char c : str.toCharArray()) {
+            if (c == '1') {
+                bitsOne++;
+            }
+        }
+        return bitsOne;
+    }
+
+    public static long numberOfDivisors(int n) {
+        long counter = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public static String shortcut(String input) {
+        return input.replaceAll("[aeiou]", "");
+    }
+
+    public static int quarterOf(int month) {
+        int[] quater = new int[]{0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4};
+        return quater[month];
+    }
+
+    public static List<Long> sumDigPow(long a, long b) {
+        List<Long> list = new ArrayList<Long>();
+        while (a <= b) {
+            String s = String.valueOf(a);
+            long numSum = 0;
+            for (int i = 0; i < s.length(); i++) {
+                int digit = Integer.parseInt(s.substring(i, i + 1));
+                numSum += (long) Math.pow(digit, (i + 1));
+            }
+            if (Double.parseDouble(s) == numSum) {
+                list.add(numSum);
+            }
+            a++;
+        }
+        return list;
+    }
+
+    public static boolean isPlural(float f) {
+        return f == 1 ? false : true;
+    }
+
+    public static int recursiveFibonacci(int n) {
+        if (n <= 2) {
+            return n - 1;
+        } else {
+            return recursiveFibonacci((n - 1)) + recursiveFibonacci((n - 2));
+        }
+    }
+
+    public static int iterFibonacci(int n) {
+        int[] fibonacciArray = new int[n + 1];
+        fibonacciArray[0] = 0;
+        fibonacciArray[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
+        }
+        return fibonacciArray[n - 1];
+    }
+
+    public static int recursiveFactorial(int n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            return n * recursiveFactorial(n - 1);
+        }
+    }
+
+    public static int iterFactorial(int n) {
+        int multiplyResult = 1;
+        for (int i = 1; i <= n; i++) {
+            multiplyResult *= i;
+        }
+        return multiplyResult;
+    }
+
+    public static void stockBuy(int m, int[] array) {
+        while (true) {
+            for (int i = 0; i < array.length; i++) {
+                for (int j = 0; j < array.length; j++) {
+                    if (m == array[i] + array[j]) {
+                        if (j < i) {
+                            System.out.println(j + " " + i);
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    public static boolean perfectlyBalanced(int[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            int leftSum = 0;
+            int rightSum = 0;
+
+            for (int j = 0; j < i; j++) {
+                leftSum += array[j];
+            }
+
+            for (int j = i + 1; j < array.length; j++) {
+                rightSum += array[j];
+            }
+
+            if (leftSum == rightSum) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int sum1n(int a) {
+        // Написать решение сюда ↓
+        int sum = 0;
+        if (a == 0) {
+            return sum;
+        } else {
+            sum += a + sum1n(a - 1);
+        }
+        return sum;
+    }
+
+    public static int[] flattenAndSort(int[][] array) {
+        int resultArrayLength = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                resultArrayLength++;
+            }
+        }
+
+        int[] resultArray = new int[resultArrayLength];
+        int resultArrayPosition = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                resultArray[resultArrayPosition] = array[i][j];
+                resultArrayPosition++;
+            }
+        }
+
+        Arrays.sort(resultArray);
+        return resultArray;
+    }
+
+    public static String chromosomeCheck(String sperm) {
+        return sperm.contains("Y") ? "Congratulations! You're going to have a son."
+                : "Congratulations! You're going to have a daughter.";
+    }
+
+    public static int GetSum(int a, int b) {
+        int[] fromTo = new int[]{a, b};
+        Arrays.sort(fromTo);
+        if (fromTo[0] == fromTo[1]) {
+            return fromTo[0];
+        } else {
+            int sum = 0;
+            for (int i = fromTo[0]; i <= fromTo[1]; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+    }
+
+    static String encode(String word) {
+        String lowerCasedWord = word.toLowerCase();
+
+        // count letters repeats in word
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < lowerCasedWord.length(); i++) {
+            char ch = lowerCasedWord.charAt(i);
+            if (hashMap.containsKey(ch)) {
+                Integer hashMapValue = hashMap.get(ch);
+                hashMap.put(ch, hashMapValue + 1);
+            } else {
+                hashMap.put(ch, 1);
+            }
+        }
+
+        // create new string
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < lowerCasedWord.length(); i++) {
+            char ch = lowerCasedWord.charAt(i);
+            Integer hashMapValue = hashMap.get(ch);
+            if (hashMapValue > 1) {
+                stringBuilder.append(')');
+            } else {
+                stringBuilder.append('(');
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public static boolean getXO(String str) {
+        char[] ch = str.toLowerCase().toCharArray();
+
+        int xCounter = 0;
+        int oCounter = 0;
+        int xoCounter = 0;
+
+        for (char c : ch) {
+            if (c == 'x') {
+                xCounter++;
+                xoCounter++;
+            }
+            if (c == 'o') {
+                oCounter++;
+                xoCounter++;
+            }
+        }
+
+        if (xoCounter == 0) {
+            return true;
+        }
+        if (xoCounter == str.length()) {
+            if (xCounter == oCounter) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static String createPhoneNumber(int[] numbers) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (i == 0) {
+                stringBuilder.append("(");
+            }
+            if (i == 3) {
+                stringBuilder.append(") ");
+            }
+            if (i == 6) {
+                stringBuilder.append("-");
+            }
+            stringBuilder.append(numbers[i]);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public static String highAndLow(String numbers) {
+        String[] stringValues = numbers.split(" ");
+        Integer[] integers = new Integer[stringValues.length];
+        for (int i = 0; i < stringValues.length; i++) {
+            integers[i] = Integer.parseInt(stringValues[i]);
+        }
+        Arrays.sort(integers);
+        return integers[integers.length - 1].toString() + " " + integers[0].toString();
+    }
+
+    public static String toAlternativeString(String string) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (Character.isUpperCase(ch)) {
+                stringBuilder.append(Character.toLowerCase(ch));
+            } else if (Character.isLowerCase(ch)) {
+                stringBuilder.append(Character.toUpperCase(ch));
+            } else {
+                stringBuilder.append(ch);
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    public static char getGrade(int s1, int s2, int s3) {
+        double averageValue = (s1 + s2 + s3) / 3;
+        if (averageValue >= 90 && averageValue <= 100) {
+            return 'A';
+        } else if (averageValue >= 80 && averageValue < 90) {
+            return 'B';
+        } else if (averageValue >= 70 && averageValue < 80) {
+            return 'C';
+        } else if (averageValue >= 60 && averageValue < 70) {
+            return 'D';
+        } else
+            return 'F';
+    }
+
+    public static int[] pipeFix(int[] numbers) {
+        Arrays.sort(numbers);
+        int minValue = numbers[0];
+        int maxValue = numbers[numbers.length - 1];
+        int resultArraySize = maxValue - minValue + 1;
+
+        int[] resultArray = new int[resultArraySize];
+        for (int i = 0; i < resultArraySize; i++) {
+            resultArray[i] = minValue;
+            minValue++;
+        }
+
+        return resultArray;
+    }
+
+    /*
+     * public static boolean isAnagram(String test, String original) {
+     * if (test.length() != original.length()) {
+     * return false;
+     * }
+     *
+     * String testString = new String(test).toLowerCase();
+     * String originalString = new String(original).toLowerCase();
+     *
+     * for (int i = 0; i < testString.length(); i++) {
+     * if (!test.contains(originalString.substring(i, i + 1))) {
+     * return false;
+     * }
+     * }
+     * return true;
+     * }
+     */
+
+    public static int areaOrPerimeter(int l, int w) {
+        return (l == w) ? l * w : 2 * l + 2 * w;
+    }
+
+    public static int countPassengers(ArrayList<int[]> stops) {
+        ArrayList<int[]> arrayList = stops;
+        int counter = 0;
+        for (int[] ints : arrayList) {
+            int delta = ints[0] - ints[1];
+            counter += delta;
+        }
+        return counter;
+    }
+
+    public static String hoopCount(int n) {
+        return (n >= 10) ? "Great, now move on to tricks" : "Keep at it until you get it";
+    }
+
+    public static String smash(String... words) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String word : words) {
+            stringBuilder.append(word).append(" ");
+        }
+        if (stringBuilder.length() > 1) {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public static double findUniq(double arr[]) {
+
+        TreeSet<Double> treeSet = new TreeSet<>();
+        for (double v : arr) {
+            treeSet.add(v);
+        }
+
+        int firstCounter = 0;
+        int secondCounter = 0;
+
+        for (double v : arr) {
+            if (v == treeSet.first()) {
+                firstCounter++;
+            } else {
+                secondCounter++;
+            }
+        }
+
+        if (firstCounter > secondCounter) {
+            return treeSet.last();
+        } else
+            return treeSet.first();
+
+    }
+
+    public static boolean betterThanAverage(int[] classPoints, int yourPoints) {
+        int[] allPoints = new int[classPoints.length + 1];
+
+        System.arraycopy(classPoints, 0, allPoints, 0, classPoints.length);
+        allPoints[allPoints.length - 1] = yourPoints;
+
+        int totalSum = 0;
+        for (int allPoint : allPoints) {
+            totalSum += allPoint;
+        }
+
+        int average = totalSum / allPoints.length;
+
+        return yourPoints > average;
+    }
+
+    public static String order(String words) {
+        if (words.length() == 0) {
+            return "-1";
+        } else {
+
+            String[] wordList = words.split(" ");
+            HashMap<Integer, String> hashMap = new HashMap<>();
+
+            for (String s : wordList) {
+                for (int i = 0; i < s.length(); i++) {
+                    if (Character.isDigit(s.charAt(i))) {
+                        Integer index = Integer.parseInt(String.valueOf(s.charAt(i)));
+                        hashMap.put(index, s);
+                    }
+                }
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 1; i <= hashMap.size(); i++) {
+                stringBuilder.append(hashMap.get(i)).append(" ");
+            }
+
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+
+            return stringBuilder.toString();
+        }
+    }
+
+    public static int squareDigits(int n) {
+        String number = Integer.toString(n);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < number.length(); i++) {
+            int digit = Integer.parseInt(String.valueOf(number.charAt(i)));
+            stringBuilder.append(digit * digit);
+        }
+        int result = Integer.parseInt(stringBuilder.toString());
+        return result;
+    }
+
+    public static String oddOrEven(int[] array) {
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        return (sum % 2 == 0) ? "even" : "odd";
+        // return stream(array).sum() % 2 == 0 ? "even" : "odd";
+    }
+
+    public static int cockroachSpeed(double x) {
+        double kph = 27.777777777778;
+        return (int) (kph * x);
+    }
+
+    public static String high(String s) {
+        String[] words = s.split(" ");
+        double[] wordValues = new double[words.length];
+
+        for (int i = 0; i < words.length; i++) {
+            double charSum = 0;
+            for (int j = 0; j < words[i].length(); j++) {
+                char character = words[i].charAt(j);
+                double ascii = (int) character;
+                charSum += ascii;
+            }
+            wordValues[i] = charSum;
+        }
+
+        int maxValueWord = (int) wordValues[0];
+        int indexOfMaxValueWord = 0;
+        for (int i = 0; i < wordValues.length; i++) {
+            if (maxValueWord < wordValues[i]) {
+                maxValueWord = (int) wordValues[i];
+                indexOfMaxValueWord = i;
+            }
+        }
+        return words[indexOfMaxValueWord];
+    }
 
     public static boolean isPalindrome(char[] str1) {
         for (int i = 0; i < str1.length; i++) {
-            if (str1[i] != str1[str1.length - i -1]){
+            if (str1[i] != str1[str1.length - i - 1]) {
                 return false;
             }
         }
@@ -44,7 +596,8 @@ public class Main {
                     return false;
                 }
             }
-        } else return false;
+        } else
+            return false;
         return true;
     }
 
@@ -78,21 +631,17 @@ public class Main {
         return word.length;
     }
 
-
     public static boolean isLetterOrDigit(char c) {
         return (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57);
     }
-
 
     public static boolean isLetter(char c) {
         return (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
     }
 
-
     public static boolean isUpper(char c) {
         return Character.isUpperCase(c);
     }
-
 
     public static boolean isWhitespace(char c) {
         return c == ' ' || c == '\n' || c == '\t';
@@ -118,7 +667,8 @@ public class Main {
                 corrInd++;
                 primeNum[corrInd] = corrNum;
                 corrNum = primeNum[corrInd] + 2;
-            } else corrNum += 2;
+            } else
+                corrNum += 2;
         }
         return primeNum[primeNum.length - 1];
     }
@@ -244,7 +794,8 @@ public class Main {
                 result += digit;
             }
             return result = digital_root(result);
-        } else return value;
+        } else
+            return value;
     }
 
     public static String abbrevName(String name) {
@@ -302,7 +853,6 @@ public class Main {
         return resultBuilder.toString();
     }
 
-
     public static String replace(final String s) {
         return s.replaceAll("[aeiouAEIOU]", "!");
     }
@@ -341,11 +891,9 @@ public class Main {
         return resultCharacterHashSet.size();
     }
 
-
     public static double find_average(int[] array) {
         return Arrays.stream(array).mapToDouble(d -> d).average().orElse(0);
     }
-
 
     public static int solution(int number) {
         if (number > 0) {
@@ -370,15 +918,16 @@ public class Main {
         }
     }
 
-
     public static List<Object> filterList(final List<Object> list) {
-        /*ArrayList<Object> arrayList = new ArrayList<Object>();
-        for (Object o : list) {
-            if (o instanceof Integer) {
-                arrayList.add(o);
-            }
-        }
-        return arrayList;*/
+        /*
+         * ArrayList<Object> arrayList = new ArrayList<Object>();
+         * for (Object o : list) {
+         * if (o instanceof Integer) {
+         * arrayList.add(o);
+         * }
+         * }
+         * return arrayList;
+         */
         return list.stream().filter(o -> o instanceof Integer).collect(Collectors.toList());
     }
 
@@ -419,14 +968,10 @@ public class Main {
         return new int[]{positiveCounter, negativeSum};
     }
 
-
     public static String remove(String str) {
-        //StringBuilder stringBuilder = new StringBuilder(str);
-        //stringBuilder.deleteCharAt(0).deleteCharAt(stringBuilder.length() - 1);
-        //return stringBuilder.toString();
+
         return str.substring(1, str.length() - 1);
     }
-
 
     public static int nbDig(int n, int d) {
         int[] array = new int[n + 1];
@@ -467,7 +1012,6 @@ public class Main {
         return Integer.parseInt(stringBuilder.toString());
     }
 
-
     public static int[] reverse(int n) {
         int[] array = new int[n];
         for (int i = 0; i < array.length; i++) {
@@ -478,9 +1022,6 @@ public class Main {
     }
 
     public static int[] map(int[] arr) {
-//        for (int i = 0; i < arr.length; i++) {
-//            arr[i] *= 2;
-//        }
         return Arrays.stream(arr).map(value -> value *= 2).toArray();
     }
 
@@ -495,15 +1036,15 @@ public class Main {
             }
         }
         return stringBuilder.toString();
-        //return numberString.replaceAll("[0-4]", "0").replaceAll("[5-9]", "1");
     }
 
     public static String getMiddle(String word) {
 
+        String s = String.valueOf(word.charAt(word.length() / 2));
         if (word.length() % 2 == 1) {
-            return String.valueOf(word.charAt(word.length() / 2));
+            return s;
         } else {
-            return String.valueOf(word.charAt(word.length() / 2 - 1)) + String.valueOf(word.charAt(word.length() / 2));
+            return word.charAt(word.length() / 2 - 1) + s;
         }
     }
 
@@ -605,7 +1146,8 @@ public class Main {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == startValue) {
                 startValue++;
-            } else return array[i];
+            } else
+                return array[i];
         }
         return null;
     }
@@ -652,7 +1194,6 @@ public class Main {
         return stringBuilder.toString();
     }
 
-
     public static int summation(int n) {
         int sum = 0;
         for (int i = 0; i <= n; i++) {
@@ -676,10 +1217,6 @@ public class Main {
 
     public static int liters(double time) {
         return (int) (time * 0.5);
-    }
-
-    public static String noSpace(final String x) {
-        return x.replaceAll("\s", "");
     }
 
     public static String accum(String s) {
@@ -712,7 +1249,8 @@ public class Main {
     public static int getCount(String str) {
         int vowelsCounter = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o'
+                    || str.charAt(i) == 'u') {
                 vowelsCounter++;
             }
         }
@@ -772,14 +1310,14 @@ public class Main {
         }
     }
 
-    public static String updateLight(String current) {
-        return switch (current) {
-            case "green" -> "yellow";
-            case "yellow" -> "red";
-            case "red" -> "green";
-            default -> throw new IllegalArgumentException();
-        };
-    }
+    // public static String updateLight(String current) {
+    // return switch (current) {
+    // case "green" -> "yellow";
+    // case "yellow" -> "red";
+    // case "red" -> "green";
+    // default -> throw new IllegalArgumentException();
+    // };
+    // }
 
     public static int simpleMultiplication(int n) {
         return (n % 2 == 0) ? n * 8 : n * 9;
@@ -818,7 +1356,6 @@ public class Main {
     public static String removeExclamationMarks(String s) {
         return s.replaceAll("!", "");
     }
-
 
     public static boolean isTriangle(int a, int b, int c) {
         return ((c < a + b) && (b < a + c) && (a < b + c)) == true ? true : false;
@@ -859,18 +1396,6 @@ public class Main {
         } else {
             return false;
         }
-    }
-
-    public static int findShort(String s) {
-        String[] words = s.split("\s");
-        int minWordLength = words[0].length();
-
-        for (String word : words) {
-            if (word.length() < minWordLength) {
-                minWordLength = word.length();
-            }
-        }
-        return minWordLength;
     }
 
     public static String binaryAddition(int a, int b) {
@@ -1011,11 +1536,6 @@ public class Main {
     }
 
     public static String disemvowel(String str) {
-//        return str.replace("a","").replace("A","")
-//                .replace("e", "").replace("E", "")
-//                .replace("i", "").replace("I", "")
-//                .replace("o","").replace("O","")
-//                .replace("u","").replace("U","");
         return str.replaceAll("[aAeEiIoOuU]", "");
     }
 
@@ -1076,16 +1596,16 @@ public class Main {
         return array;
     }
 
-    public static Integer basicMath(String op, int v1, int v2) {
-        int result = switch (op) {
-            case "+" -> v1 + v2;
-            case "-" -> v1 - v2;
-            case "*" -> v1 * v2;
-            case "/" -> v1 / v2;
-            default -> 0;
-        };
-        return result;
-    }
+    // public static Integer basicMath(String op, int v1, int v2) {
+    // int result = switch (op) {
+    // case "+" -> v1 + v2;
+    // case "-" -> v1 - v2;
+    // case "*" -> v1 * v2;
+    // case "/" -> v1 / v2;
+    // default -> 0;
+    // };
+    // return result;
+    // }
 
     public static boolean check(Object[] a, Object x) {
         boolean checkResult = false;
@@ -1093,7 +1613,8 @@ public class Main {
             if (checkedObject.equals(x)) {
                 checkResult = true;
                 break;
-            } else checkResult = false;
+            } else
+                checkResult = false;
         }
         return checkResult;
     }
@@ -1109,7 +1630,8 @@ public class Main {
     public static String boolToWord(boolean b) {
         if (b) {
             return "Yes";
-        } else return "No";
+        } else
+            return "No";
     }
 
     public static int Past(int h, int m, int s) {
@@ -1137,14 +1659,6 @@ public class Main {
 
     public static String findNeedle(Object[] haystack) {
         return "found the needle at position " + Arrays.asList(haystack).indexOf("needle");
-//        String resultString = "";
-//        for (int i = 0; i < haystack.length; i++) {
-//            if (haystack[i] != null) {
-//                if (haystack[i].equals("needle")) {
-//                    resultString = "found the needle at position " + i;
-//                }
-//            }
-//        }
     }
 
     public static String doubleChar(String s) {

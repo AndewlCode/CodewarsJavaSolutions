@@ -1,3 +1,5 @@
+package Classes.Factorial;
+
 public class Factorial {
     public int factorial(int n) throws IllegalArgumentException {
         if (n < 0 || n > 12) {
