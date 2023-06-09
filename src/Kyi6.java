@@ -2,7 +2,47 @@ import java.util.*;
 
 public class Kyi6 {
     public static void main(String[] args) {
+        System.out.println(findMissing(new int[]{1,1,1}));
+    }
 
+    public static int findMissing(int[] numbers) {
+        for (int i = 1; i < numbers.length - 1; i++) {
+            int firstDelta = numbers[i] - numbers[i - 1];
+            int secondDelta = numbers[i + 1] - numbers[i];
+            if (firstDelta != secondDelta) {
+                return (numbers[i + 1] + numbers[i - 1] - numbers[i]);
+            }
+        }
+        return numbers[0];
+    }
+
+    public static int[] twoSum(int[] numbers, int target) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 1; j < numbers.length; j++) {
+                if (numbers[i] + numbers[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+
+    public static int[] sortArray(int[] array) {
+        List<Integer> oddNumbers = new ArrayList<>();
+        for (int i : array) {
+            if (i % 2 != 0) {
+                oddNumbers.add(i);
+            }
+        }
+        Collections.sort(oddNumbers);
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0) {
+                array[i] = oddNumbers.get(0);
+                oddNumbers.remove(0);
+            }
+        }
+        return array;
     }
 
     public static String meeting(String s) {
@@ -27,11 +67,7 @@ public class Kyi6 {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < lastNames.length; i++) {
-            stringBuilder.append("(")
-                    .append(lastNames[i])
-                    .append(", ")
-                    .append(friendMap.get(lastNames[i]))
-                    .append(")");
+            stringBuilder.append("(").append(lastNames[i]).append(", ").append(friendMap.get(lastNames[i])).append(")");
             friendMap.remove(lastNames[i]);
         }
 
@@ -54,9 +90,7 @@ public class Kyi6 {
             evilScope += evilPower[i] * evilArmy[i];
         }
 
-        return (goodScope > evilScope) ? "Battle Result: Good triumphs over Evil" :
-                (goodScope == evilScope) ? "Battle Result: No victor on this battle field" :
-                        "Battle Result: Evil eradicates all trace of Good";
+        return (goodScope > evilScope) ? "Battle Result: Good triumphs over Evil" : (goodScope == evilScope) ? "Battle Result: No victor on this battle field" : "Battle Result: Evil eradicates all trace of Good";
     }
 
     public static int[] parse(String data) {
