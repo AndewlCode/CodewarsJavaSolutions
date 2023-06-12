@@ -6,6 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Undone {
+    public static int[] foldArray(int[] array, int runs) {
+        int[] subArray = new int[array.length / 2];
+        if (runs > 0) {
+            for (int i = 0; i < subArray.length - 1; i++) {
+                subArray[i] = array[i] + array[array.length - i - 1];
+            }
+            foldArray(subArray, runs - 1);
+        }
+        return subArray;
+    }
     public static String walk(String path) {
         char[] commands = new char[path.length()];
         if (commands.length == 0) {

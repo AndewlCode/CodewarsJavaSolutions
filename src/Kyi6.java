@@ -1,8 +1,16 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Kyi6 {
     public static void main(String[] args) {
-        System.out.println(findMissing(new int[]{1,1,1}));
+    }
+
+    public static boolean validPhoneNumber(String phoneNumber) {
+        String regex = "[(]\\d{3}[)]\\s\\d{3}[-]\\d{4}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
     }
 
     public static int findMissing(int[] numbers) {
