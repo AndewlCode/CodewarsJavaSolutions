@@ -1,9 +1,35 @@
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Kyi6 {
     public static void main(String[] args) {
+
+    }
+
+    public static String dashatize(int num) {
+        int value = Math.abs(num);
+        String strNumber = Integer.toString(value);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < strNumber.length(); i++) {
+            int currentDigit = Integer.parseInt(String.valueOf(strNumber.charAt(i)));
+            if (currentDigit % 2 != 0) {
+                stringBuilder.append("-").append(currentDigit).append("-");
+            } else {
+                stringBuilder.append(currentDigit);
+            }
+        }
+
+        if (stringBuilder.charAt(0) == '-') {
+            stringBuilder.deleteCharAt(0);
+        }
+        if (stringBuilder.charAt(stringBuilder.length() - 1) == '-') {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+
+        return stringBuilder.toString().replaceAll("--", "-");
     }
 
     public static boolean validPhoneNumber(String phoneNumber) {
