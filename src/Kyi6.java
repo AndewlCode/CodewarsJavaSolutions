@@ -5,7 +5,18 @@ import java.util.regex.Pattern;
 
 public class Kyi6 {
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(sumParts((new int[]{1,2,3,4,5,6}))));
+    }
 
+    public static int[] sumParts(int[] ls) {
+        int totalSum = Arrays.stream(ls).sum();
+        int[] result = new int[ls.length + 1];
+        int minuser = 0;
+        for (int i = 0; i < ls.length; i++) {
+            result[i] = totalSum - minuser;
+            minuser += ls[i];
+        }
+        return result;
     }
 
     public static String cleanString(String s) {
