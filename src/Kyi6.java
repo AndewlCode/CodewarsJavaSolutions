@@ -8,6 +8,69 @@ public class Kyi6 {
 
     }
 
+    public static String cleanString(String s) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != '#') {
+                stringBuilder.append(s.charAt(i));
+            } else {
+                if (stringBuilder.length() > 0) {
+                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+
+        for (String s : lstOfArt) {
+            String[] arr = s.split(" ");
+            String key = arr[0];
+            int value = Integer.parseInt(arr[1]);
+            hashMap.put(key, value);
+        }
+
+        if (hashMap.size() == 0) {
+            return "";
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] hashmapKeys = hashMap.keySet().toArray(new String[0]);
+        for (String s : lstOf1stLetter) {
+            int value = 0;
+            for (String hashmapKey : hashmapKeys) {
+                if (hashmapKey.startsWith(s)) {
+                    value += hashMap.get(hashmapKey);
+                }
+            }
+            stringBuilder.append("(").append(s).append(" : ").append(value).append(") - ");
+        }
+
+        if (stringBuilder.length() > 3) {
+            stringBuilder.delete(stringBuilder.length() - 3, stringBuilder.length());
+        }
+
+        return stringBuilder.toString();
+    }
+
+
+    public static int getLengthOfMissingArray(Object[][] arrayOfArrays) {
+        List<Integer> objectsLengths = new ArrayList<>();
+        for (Object[] arrayOfArray : arrayOfArrays) {
+            objectsLengths.add(arrayOfArray.length);
+        }
+        Collections.sort(objectsLengths);
+        for (int i = 0; i < objectsLengths.size() - 1; i++) {
+            if (objectsLengths.get(i + 1) - objectsLengths.get(i) > 1) {
+                return objectsLengths.get(i) + 1;
+            }
+        }
+        return 0;
+    }
+
     public static String dashatize(int num) {
         int value = Math.abs(num);
         String strNumber = Integer.toString(value);
