@@ -12,8 +12,24 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-
     }
+
+    public static boolean validParentheses(String parens) {
+        int count = 0;
+        for (int i = 0; i < parens.length(); i++) {
+            char c = parens.charAt(i);
+            if (c == '(') {
+                count++;
+            } else if (c == ')') {
+                count--;
+                if (count < 0) {
+                    return false;
+                }
+            }
+        }
+        return count == 0;
+    }
+
     public static int stringToInt(char[] str) {
         int i = 0, number = 0;
         boolean isNegative = false;
