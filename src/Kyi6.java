@@ -5,7 +5,16 @@ import java.util.regex.Pattern;
 
 public class Kyi6 {
     public static void main(String[] args) {
-
+    }
+    public static String[] rotate(String text) {
+        String[] result = new String[text.length()];
+        StringBuilder stringBuilder = new StringBuilder(text);
+        for (int i = 0; i < text.length(); i++) {
+            stringBuilder.append(stringBuilder.charAt(0))
+                    .delete(0, 1);
+            result[i] = stringBuilder.toString();
+        }
+        return result;
     }
 
     public static int[] sumParts(int[] ls) {
