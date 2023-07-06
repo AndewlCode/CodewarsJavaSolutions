@@ -1,9 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Kyi6 {
+public class Kyu6 {
     public static void main(String[] args) {
     }
     public static String[] rotate(String text) {
@@ -313,5 +312,8 @@ public class Kyi6 {
             result[result.length - 1] = result[result.length - 1] + "_";
         }
         return result;
+    }
+
+    public static class Kyu5 {
     }
 }

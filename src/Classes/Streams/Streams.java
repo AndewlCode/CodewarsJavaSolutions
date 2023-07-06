@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class Streams {
     public static void main(String[] args) {
-        System.out.println(countingSheep(5));
+
     }
 
     public static String countingSheep(int num) {
