@@ -5,6 +5,39 @@ import java.util.regex.Pattern;
 public class Kyu6 {
     public static void main(String[] args) {
     }
+
+    public static boolean validate(String n) {
+        // Replace all spaces in string
+        n = n.replaceAll("\\s", "");
+
+        // Array for digits storage
+        int[] digits = new int[n.length()];
+
+        // Check String contains only numeric values
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (Character.isDigit(n.charAt(i))) {
+                digits[i] = Integer.parseInt(String.valueOf(n.charAt(i)));
+            } else {
+                return false;
+            }
+        }
+
+        // Calculate values
+        for (int i = digits.length - 2; i >= 0; i -= 2) {
+            int tmp = digits[i] * 2;
+            if (tmp > 9) {
+                tmp = tmp - 9;
+            }
+            digits[i] = tmp;
+        }
+
+        // Calculate array total sum;
+        int totalSum = Arrays.stream(digits).sum();
+
+        // Return result
+        return totalSum % 10 == 0;
+    }
+
     public static String[] rotate(String text) {
         String[] result = new String[text.length()];
         StringBuilder stringBuilder = new StringBuilder(text);
@@ -75,7 +108,6 @@ public class Kyu6 {
         return stringBuilder.toString();
     }
 
-
     public static int getLengthOfMissingArray(Object[][] arrayOfArrays) {
         List<Integer> objectsLengths = new ArrayList<>();
         for (Object[] arrayOfArray : arrayOfArrays) {
@@ -136,11 +168,11 @@ public class Kyu6 {
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 1; j < numbers.length; j++) {
                 if (numbers[i] + numbers[j] == target) {
-                    return new int[]{i, j};
+                    return new int[] { i, j };
                 }
             }
         }
-        return new int[]{};
+        return new int[] {};
     }
 
     public static int[] sortArray(int[] array) {
@@ -187,13 +219,12 @@ public class Kyu6 {
             friendMap.remove(lastNames[i]);
         }
 
-
         return stringBuilder.toString();
     }
 
     public static String battle(String goodAmounts, String evilAmounts) {
-        int[] goodPower = new int[]{1, 2, 3, 3, 4, 10};
-        int[] evilPower = new int[]{1, 2, 2, 2, 3, 5, 10};
+        int[] goodPower = new int[] { 1, 2, 3, 3, 4, 10 };
+        int[] evilPower = new int[] { 1, 2, 2, 2, 3, 5, 10 };
         int[] goodArmy = Arrays.stream(goodAmounts.split("\\s+")).mapToInt(Integer::parseInt).toArray();
         int[] evilArmy = Arrays.stream(evilAmounts.split("\\s+")).mapToInt(Integer::parseInt).toArray();
         int goodScope = 0;
@@ -206,7 +237,9 @@ public class Kyu6 {
             evilScope += evilPower[i] * evilArmy[i];
         }
 
-        return (goodScope > evilScope) ? "Battle Result: Good triumphs over Evil" : (goodScope == evilScope) ? "Battle Result: No victor on this battle field" : "Battle Result: Evil eradicates all trace of Good";
+        return (goodScope > evilScope) ? "Battle Result: Good triumphs over Evil"
+                : (goodScope == evilScope) ? "Battle Result: No victor on this battle field"
+                        : "Battle Result: Evil eradicates all trace of Good";
     }
 
     public static int[] parse(String data) {
@@ -272,7 +305,7 @@ public class Kyu6 {
 
     public static int[] deleteNth(int[] elements, int maxOccurrences) {
         if (maxOccurrences == 0) {
-            return new int[]{};
+            return new int[] {};
         } else {
             ArrayList<Integer> resultArrayList = new ArrayList<>();
             int resultArrayListIndex = 0;
