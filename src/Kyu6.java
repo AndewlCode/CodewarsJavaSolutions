@@ -6,6 +6,39 @@ public class Kyu6 {
     public static void main(String[] args) {
     }
 
+    public static String encryptThis(String text) {
+        String[] words = text.split("\\s");
+        StringBuilder stringBuilder = new StringBuilder();
+        if (words.length == 0) {
+            return "";
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() == 1) {
+                int firstLetter = words[i].charAt(0);
+                stringBuilder.append(firstLetter);
+            } else if (words[i].length() == 2) {
+                int firstLetter = words[i].charAt(0);
+                char lastLetter = words[i].charAt(1);
+                stringBuilder.append(firstLetter).append(lastLetter);
+            } else if (words[i].length() > 2) {
+                int firstLetter = words[i].charAt(0);
+                char secondLetter = words[i].charAt(words[i].length() - 1);
+                char lastLetter = words[i].charAt(1);
+                String middleSubstring = words[i].substring(2, words[i].length() - 1);
+                stringBuilder.append(firstLetter).append(secondLetter).append(middleSubstring).append(lastLetter);
+            }
+            words[i] = stringBuilder.toString();
+            stringBuilder.setLength(0);
+        }
+
+        for (String s : words) {
+            stringBuilder.append(s).append(" ");
+        }
+
+        return stringBuilder.toString().trim();
+    }
+
     public static boolean validate(String n) {
         // Replace all spaces in string
         n = n.replaceAll("\\s", "");
@@ -168,11 +201,11 @@ public class Kyu6 {
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 1; j < numbers.length; j++) {
                 if (numbers[i] + numbers[j] == target) {
-                    return new int[] { i, j };
+                    return new int[]{i, j};
                 }
             }
         }
-        return new int[] {};
+        return new int[]{};
     }
 
     public static int[] sortArray(int[] array) {
@@ -223,8 +256,8 @@ public class Kyu6 {
     }
 
     public static String battle(String goodAmounts, String evilAmounts) {
-        int[] goodPower = new int[] { 1, 2, 3, 3, 4, 10 };
-        int[] evilPower = new int[] { 1, 2, 2, 2, 3, 5, 10 };
+        int[] goodPower = new int[]{1, 2, 3, 3, 4, 10};
+        int[] evilPower = new int[]{1, 2, 2, 2, 3, 5, 10};
         int[] goodArmy = Arrays.stream(goodAmounts.split("\\s+")).mapToInt(Integer::parseInt).toArray();
         int[] evilArmy = Arrays.stream(evilAmounts.split("\\s+")).mapToInt(Integer::parseInt).toArray();
         int goodScope = 0;
@@ -239,7 +272,7 @@ public class Kyu6 {
 
         return (goodScope > evilScope) ? "Battle Result: Good triumphs over Evil"
                 : (goodScope == evilScope) ? "Battle Result: No victor on this battle field"
-                        : "Battle Result: Evil eradicates all trace of Good";
+                : "Battle Result: Evil eradicates all trace of Good";
     }
 
     public static int[] parse(String data) {
@@ -305,7 +338,7 @@ public class Kyu6 {
 
     public static int[] deleteNth(int[] elements, int maxOccurrences) {
         if (maxOccurrences == 0) {
-            return new int[] {};
+            return new int[]{};
         } else {
             ArrayList<Integer> resultArrayList = new ArrayList<>();
             int resultArrayListIndex = 0;
