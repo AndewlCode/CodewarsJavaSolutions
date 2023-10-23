@@ -4,6 +4,26 @@ import java.util.regex.Pattern;
 
 public class Kyu6 {
     public static void main(String[] args) {
+
+    }
+
+    public static String high(String s) {
+        String[] words = s.split(" ");
+        HashMap<Integer, String> hashMap = new HashMap<>();
+
+        for (String word : words) {
+            // Calculate each word value
+            int charSum = 0;
+            for (int i = 0; i < word.length(); i++) {
+                charSum += word.charAt(i) - 96;
+            }
+            // Put word value to HashMap if not exists
+            if (!hashMap.containsKey(charSum)) {
+                hashMap.put(charSum, word);
+            }
+        }
+        // Return result
+        return hashMap.get(Collections.max(hashMap.keySet()));
     }
 
     public static String encryptThis(String text) {
