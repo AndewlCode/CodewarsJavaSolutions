@@ -7,6 +7,20 @@ public class Kyu6 {
 
     }
 
+    public static long digPow(int n, int p) {
+        String str = String.valueOf(n);
+
+        long sum = 0;
+        for (int i = 0; i < str.length(); i++) {
+            int digit = Character.getNumericValue(str.charAt(i));
+            sum += Math.pow(digit, p);
+            p++;
+        }
+
+        double result = (double) sum / n;
+        return (result == (long) result) ? (long) result : -1;
+    }
+
     public static String high(String s) {
         String[] words = s.split(" ");
         HashMap<Integer, String> hashMap = new HashMap<>();
