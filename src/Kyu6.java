@@ -4,8 +4,7 @@ import java.util.regex.Pattern;
 
 public class Kyu6 {
     public static void main(String[] args) {
-        int[] data1 = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0};
-        System.out.println(Arrays.toString(DataReverse(data1)));
+
     }
 
     public static int[] DataReverse(int[] data) {
@@ -23,9 +22,9 @@ public class Kyu6 {
 
         // Put all bits from storage to result
         for (int i = 0; i < totalBytes; i++) {
-            int[] tmp =  Arrays.copyOfRange(bytes.get(bytes.size() - 1), 0, 8);
-            System.arraycopy(tmp,0,result,0,8);
-            bytes.remove(bytes.size()-1);
+            int[] tmp = Arrays.copyOfRange(bytes.get(bytes.size() - 1), 0, 8);
+            System.arraycopy(tmp, 0, result, 0, 8);
+            bytes.remove(bytes.size() - 1);
         }
 
         System.out.println(Arrays.toString(result));
