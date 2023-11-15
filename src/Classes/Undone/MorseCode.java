@@ -25,7 +25,7 @@ public class MorseCode {
         morseMap.put("-.", 'N');
         morseMap.put("---", 'O');
         morseMap.put(".--.", 'P');
-        morseMap.put("--.", 'Q');
+        morseMap.put("--.-", 'Q');
         morseMap.put(".-.", 'R');
         morseMap.put("...", 'S');
         morseMap.put("-", 'T');

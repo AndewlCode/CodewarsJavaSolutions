@@ -4,7 +4,33 @@ import java.util.regex.Pattern;
 
 public class Kyu6 {
     public static void main(String[] args) {
+        int[] data1 = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0};
+        System.out.println(Arrays.toString(DataReverse(data1)));
+    }
 
+    public static int[] DataReverse(int[] data) {
+        // Create storage for bytes
+        ArrayList<int[]> bytes = new ArrayList<>();
+
+        // Put all bits from data to bytes storage
+        int totalBytes = data.length / 8;
+        for (int i = 0; i < totalBytes; i++) {
+            bytes.add(Arrays.copyOfRange(data, i * 8, i * 8 + 8));
+        }
+
+        // Create output data with source data size
+        int[] result = new int[0];
+
+        // Put all bits from storage to result
+        for (int i = 0; i < totalBytes; i++) {
+            int[] tmp =  Arrays.copyOfRange(bytes.get(bytes.size() - 1), 0, 8);
+            System.arraycopy(tmp,0,result,0,8);
+            bytes.remove(bytes.size()-1);
+        }
+
+        System.out.println(Arrays.toString(result));
+
+        return result;
     }
 
     public static long digPow(int n, int p) {
