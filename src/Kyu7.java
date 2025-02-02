@@ -1,10 +1,41 @@
+import java.util.HashMap;
+
 public class Kyu7 {
 
 
     public static void main(String[] args) {
-        int seconds = 15;
-        double[] x = new double[]{0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25};
-        System.out.println(gps(seconds, x));
+        System.out.println(alphabetWar("zabbix"));
+    }
+
+    public static String alphabetWar(String fight) {
+        char[] allChars = fight.toCharArray();
+        HashMap<Character, Integer> leftSideLetters = new HashMap<>();
+        HashMap<Character, Integer> rightSideLetters = new HashMap<>();
+
+        // Left side initialization
+        leftSideLetters.put('w', 4);
+        leftSideLetters.put('p', 3);
+        leftSideLetters.put('b', 2);
+        leftSideLetters.put('s', 1);
+
+        // Right side initialization
+        rightSideLetters.put('m', 4);
+        rightSideLetters.put('q', 3);
+        rightSideLetters.put('d', 2);
+        rightSideLetters.put('z', 1);
+
+        Integer leftSideScore = 0;
+        Integer rightSideScore = 0;
+
+        for (char anyChar : allChars) {
+            leftSideScore += leftSideLetters.getOrDefault(anyChar, 0);
+            rightSideScore += rightSideLetters.getOrDefault(anyChar, 0);
+        }
+        if (leftSideScore.equals(rightSideScore)) {
+            return "Let's fight again!";
+        } else if (leftSideScore > rightSideScore) {
+            return "Left side wins!";
+        } else return "Right side wins!";
     }
 
     public static int gps(int s, double[] x) {
