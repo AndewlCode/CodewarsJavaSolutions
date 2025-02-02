@@ -1,11 +1,22 @@
-import java.util.Arrays;
-
 public class Kyu7 {
 
 
     public static void main(String[] args) {
-        int[] test_arr = new int[]{1, 1, 1, 1};
-        System.out.println(Arrays.toString(removeSmallest(test_arr)));
+        int seconds = 15;
+        double[] x = new double[]{0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25};
+        System.out.println(gps(seconds, x));
+    }
+
+    public static int gps(int s, double[] x) {
+        double delta_distance = 0;
+        double speed = 0.0;
+        double maximum_speed = 0.0;
+        for (int i = 1; i < x.length; i++) {
+            delta_distance = x[i] - x[i - 1];
+            speed = (3600 * delta_distance / s);
+            maximum_speed = maximum_speed > speed ? maximum_speed : speed;
+        }
+        return (int) (maximum_speed);
     }
 
     public static String switcheroo(String x) {
