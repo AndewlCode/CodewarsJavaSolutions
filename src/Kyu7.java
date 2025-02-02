@@ -8,15 +8,15 @@ public class Kyu7 {
     }
 
     public static int gps(int s, double[] x) {
-        double delta_distance = 0;
-        double speed = 0.0;
-        double maximum_speed = 0.0;
+        double deltaDistance;
+        double speed;
+        double maximumSpeed = 0.0;
         for (int i = 1; i < x.length; i++) {
-            delta_distance = x[i] - x[i - 1];
-            speed = (3600 * delta_distance / s);
-            maximum_speed = maximum_speed > speed ? maximum_speed : speed;
+            deltaDistance = x[i] - x[i - 1];
+            speed = (3600 * deltaDistance / s);
+            maximumSpeed = maximumSpeed > speed ? maximumSpeed : speed;
         }
-        return (int) (maximum_speed);
+        return (int) (maximumSpeed);
     }
 
     public static String switcheroo(String x) {
@@ -30,19 +30,19 @@ public class Kyu7 {
         }
 
         int[] result = new int[numbers.length - 1];
-        int min_value = numbers[0];
-        int min_value_index = 0;
+        int minValue = numbers[0];
+        int minValueIndex = 0;
 
         // get minimum value and minimum value index.
         for (int i = 0; i < numbers.length; i++) {
-            if (min_value > numbers[i]) {
-                min_value = numbers[i];
-                min_value_index = i;
+            if (minValue > numbers[i]) {
+                minValue = numbers[i];
+                minValueIndex = i;
             }
         }
         // copy given array to new array without minimum value.
-        System.arraycopy(numbers, 0, result, 0, min_value_index);
-        System.arraycopy(numbers, min_value_index + 1, result, min_value_index, result.length - min_value_index);
+        System.arraycopy(numbers, 0, result, 0, minValueIndex);
+        System.arraycopy(numbers, minValueIndex + 1, result, minValueIndex, result.length - minValueIndex);
         return result;
     }
 
