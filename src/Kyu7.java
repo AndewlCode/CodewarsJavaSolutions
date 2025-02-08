@@ -1,10 +1,34 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Kyu7 {
 
 
     public static void main(String[] args) {
-        System.out.println(alphabetWar("zabbix"));
+
+    }
+
+    public static List<String> friend(List<String> x) {
+        return x.stream()
+                .filter(str -> str.length() == 4)
+                .toList();
+    }
+
+    public static long filterString(final String value) {
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars;
+        long result;
+        chars = value.toCharArray();
+        for (char everyChar : chars) {
+            if (Character.isDigit(everyChar)) {
+                stringBuilder.append(everyChar);
+            }
+        }
+        if (stringBuilder.isEmpty()) {
+            result = -1;
+        } else result = Long.parseLong(stringBuilder.toString());
+        return result;
     }
 
     public static String alphabetWar(String fight) {
