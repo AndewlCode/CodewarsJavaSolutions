@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -6,7 +5,23 @@ public class Kyu7 {
 
 
     public static void main(String[] args) {
+        System.out.println(sortMyString("CodeWars"));
 
+    }
+
+    public static String sortMyString(String s) {
+        StringBuilder evenStringBoulder = new StringBuilder();
+        StringBuilder oddStringBuilder = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (i % 2 == 0) {
+                evenStringBoulder.append(s.charAt(i));
+            } else {
+                oddStringBuilder.append(s.charAt(i));
+            }
+        }
+        evenStringBoulder.append(" ").append(oddStringBuilder);
+        return evenStringBoulder.toString();
     }
 
     public static List<String> friend(List<String> x) {
@@ -69,7 +84,7 @@ public class Kyu7 {
         for (int i = 1; i < x.length; i++) {
             deltaDistance = x[i] - x[i - 1];
             speed = (3600 * deltaDistance / s);
-            maximumSpeed = maximumSpeed > speed ? maximumSpeed : speed;
+            maximumSpeed = Math.max(maximumSpeed, speed);
         }
         return (int) (maximumSpeed);
     }
